@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
@@ -27,10 +29,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ProjectLayoutJetPackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                LayoutsCodeLab()
             }
         }
     }
@@ -39,12 +38,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun PhotographerCard(modifier: Modifier = Modifier){
-    Row(modifier
-        .padding(8.dp)
-        .clip(RoundedCornerShape(4.dp))
-        .background(MaterialTheme.colors.surface)
-        .clickable(onClick = { /* Ignoring onClick */ })
-        .padding(16.dp)
+    Row(
+        modifier
+            .padding(8.dp)
+            .clip(RoundedCornerShape(4.dp))
+            .background(MaterialTheme.colors.surface)
+            .clickable(onClick = { /* Ignoring onClick */ })
+            .padding(16.dp)
     ) {
         Surface(modifier = Modifier.size(50.dp),
         shape = CircleShape,
@@ -68,25 +68,66 @@ fun PhotographerCard(modifier: Modifier = Modifier){
 }
 
 
-
-
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun LayoutsCodeLab(){
+    Scaffold (
+        topBar = {
+            TopAppBar(
+               title =  {
+                   Text( text = "LayoutsCodeLab")
+               },
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Filled.Favorite,contentDescription = null)
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ProjectLayoutJetPackComposeTheme {
-        Greeting("Android")
+                    }
+                }
+            )
+
+        }
+            ){ innerPadding ->
+        BodyContent(Modifier.padding(innerPadding))
+        }
+
     }
+
+
+
+@Composable
+fun BodyContent(modifier: Modifier = Modifier){
+  Column(modifier = modifier) {
+      Text("Hi there")
+      Text("Thanks for going through the Layouts codelab")
+  }
 }
+
 
 @Preview
 @Composable
-fun PhotographerCardPreview(){
-    ProjectLayoutJetPackComposeTheme{
-        PhotographerCard()
+fun LayoutCodelabPreview(){
+    ProjectLayoutJetPackComposeTheme {
+        LayoutsCodeLab()
     }
+
 }
+
+//@Composable
+//fun Greeting(name: String) {
+//    Text(text = "Hello $name!")
+//}
+
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    ProjectLayoutJetPackComposeTheme {
+//        Greeting("Android")
+//    }
+//}
+
+//@Preview
+//@Composable
+//fun PhotographerCardPreview(){
+//    ProjectLayoutJetPackComposeTheme{
+//        PhotographerCard()
+//    }
+//}
